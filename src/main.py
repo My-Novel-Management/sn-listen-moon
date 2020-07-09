@@ -11,7 +11,7 @@ from storybuilder.builder.world import World
 from storybuilder.assets import basic
 from config import ASSET
 # import scenes
-# from scenes import xxx
+from scenes import Stage
 
 
 ################################################################
@@ -28,30 +28,50 @@ from config import ASSET
 ################################################################
 
 # Constant
-TITLE = "作品タイトル"
-COPY = "コピィ"
-ONELINE = "一行説明"
-OUTLINE = "あらすじ"
+TITLE = "月を聴く彼女"
+COPY = "月を聴いたことがありますか？"
+ONELINE = "約8000字の恋愛短編。目の見えないハープ奏者の彼女の夫は、月が見えるという彼女を理解できずにいた。"
+OUTLINE = "盲目のハープ奏者を妻にもつ男性は、彼女が言う「月が見える」というのがよく理解できず、ちょっとした行き違いから喧嘩してしまう。"
 THEME = "テーマ"
-GENRE = "ジャンル"
+GENRE = "ヒューマンドラマ"
 TARGET = "ターゲット（年代）"
-SIZE = "規定サイズ"
-CONTEST_INFO = "コンテスト情報"
-CAUTION = "注意事項"
-NOTE = "備考"
+SIZE = "8K"
+CONTEST_INFO = ""
+CAUTION = ""
+NOTE = ""
 SITES = ["エブリスタ", "小説家になろう", "ノベルアッププラス", "カクヨム"]
-RELEASED = (1, 1, 2020)
-MAJOR, MINOR, MICRO = 0, 0, 1
+RELEASED = (9, 29, 2019)
+MAJOR, MINOR, MICRO = 1, 1, 0
 
 
 # Episodes
-def ep_xxx(w: World):
-    return w.episode('episode_title',
-            outline="description")
+def ep1(w: World):
+    return w.episode('1',
+            Stage.no_sound_lady(w),
+            Stage.soup_and_toast(w),
+            Stage.helpmark(w),
+            )
 
+def ep2(w: World):
+    return w.episode("2",
+            Stage.kenka(w),
+            Stage.her_concert(w),
+            Stage.stop_music(w),
+            Stage.break_them(w),
+            )
+
+def ep3(w: World):
+    return w.episode("3",
+            Stage.her_sound(w),
+            Stage.her_and_moon(w),
+            )
 
 def ch_main(w: World):
     return w.chapter('main',
+            ep1(w),
+            ep2(w),
+            ep3(w),
+            w.symbol("（了）"),
             )
 
 
